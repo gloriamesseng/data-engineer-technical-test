@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS earthquakes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id TEXT PRIMARY KEY,
     latitude REAL,
     longitude REAL,
     magnitude REAL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS locations(
     value REAL
 );
 CREATE TABLE IF NOT EXISTS losses(
-    earthquake_id INTEGER,
+    earthquake_id TEXT,
     location_id INTEGER,
     net_loss REAL,
     FOREIGN KEY(earthquake_id) REFERENCES earthquakes(id),

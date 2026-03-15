@@ -1,4 +1,5 @@
 from contextlib import closing
+from datetime import datetime, timedelta, timezone
 import functools
 from pathlib import Path
 import sqlite3
@@ -90,3 +91,16 @@ def load_statements(
         return _wrapped
 
     return _wrapper
+
+def timestamp_to_date(timestamp_ms):
+    """
+    Convertit un timestamp en millisecondes depuis 1970 en string 'YYYY-MM-DD'
+    compatible Windows même pour les dates avant 1970.
+    """
+    try:
+        epoch = datetime(1970, 1, 1, tzinfo=timezone.utc)
+        dt = epoch + timedelta(milliseconds=timestamp_ms)
+        return dt.strftime("%Y-%m-%d")
+    except Exception as e:
+        print(f"[ERROR] timestamp_to_date:: {str(e)}")
+        raise
