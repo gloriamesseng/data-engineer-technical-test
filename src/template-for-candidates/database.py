@@ -4,19 +4,20 @@ import tests
 
 
 @database_operation
-@load_statements("database/your_script.sql")
+@load_statements("database/create_tables.sql")
 def create_tables(
-    your_script: str,
+    create_tables: str,
     cursor: sqlite3.Cursor,
 ) -> None:
-    # Fill me, e.g. cursor.execute(your_script) ===>
-    pass
-    # <=== Stop
+    try:
+        cursor.executescript(create_tables)
+    except Exception as e:
+        print(f"[ERROR] error while creating databases:: {str(e)}")
+        raise
 
 
 # Do not edit
 
 if __name__ == "__main__":
     create_tables()
-
     tests.check_tables()

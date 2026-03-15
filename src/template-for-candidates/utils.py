@@ -3,7 +3,6 @@ import functools
 from pathlib import Path
 import sqlite3
 from typing import Callable, TypeVar
-
 from variables import STATEMENTS_PATH, OUTPUT_PATH
 
 # Do not edit
@@ -36,7 +35,7 @@ def database_operation(function: FunctionType) -> FunctionType:
 
 
 def _load_statement_from_file(file: str) -> str:
-    with open(STATEMENTS_PATH / file) as f:
+    with open(STATEMENTS_PATH / file, encoding="utf-8") as f:
         return f.read()
 
 

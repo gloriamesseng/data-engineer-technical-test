@@ -1,1 +1,2 @@
-SELECT name FROM locations
+SELECT name 
+FROM locations
